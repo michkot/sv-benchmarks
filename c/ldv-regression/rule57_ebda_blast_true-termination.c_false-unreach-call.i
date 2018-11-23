@@ -40,7 +40,8 @@ struct slot *tmp_slot;
 int used_tmp_slot = 0;
 int freed_tmp_slot = 1;
 
-extern void * kzalloc(int, int);
+void * __attribute__((__cdecl__)) calloc (size_t __nmemb, size_t __size) ;
+void * kzalloc(int size, int flags) { (void)flags; return calloc(1, size); }
 
 void kfree(void *p) {
  if(p!=0 && p==tmp_slot)
